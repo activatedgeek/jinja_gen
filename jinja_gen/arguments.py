@@ -3,7 +3,7 @@ import os
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='Templater',
+    parser = argparse.ArgumentParser(description='Jinja Generator',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('-f', '--file', type=str,
