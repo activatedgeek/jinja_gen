@@ -21,16 +21,16 @@ $ pip install -U .
 ## Usage
 
 ```
-usage: jinja-gen [-h] -f  [-o] [--dry] [-k] [-d]
+usage: jinja-gen [-h] -f  -c  [-o] [--dry] [-k] [-d]
 
 Jinja Generator
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f , --file           Path to the YAML file containing all configurations
-                        (default: None)
-  -o , --output-dir     Output directory for generated configurations
-                        (default: None)
+  -f , --file           Path to the Jinja2 template file (default: None)
+  -c , --config         Path to the YAML configuration file (default: None)
+  -o , --output-dir     Output directory for generated files, defaults to
+                        configuration file name (default: None)
   --dry                 A dry run showing files to be generated (default:
                         False)
   -k , --output-name-key 
@@ -46,7 +46,7 @@ optional arguments:
 See sample files in [examples](./examples) folder.
 
 ```
-$ jinja-gen -f ./examples/example.sh.j2 -c ./examples/example.yaml
+$ jinja-gen -f examples/sample.sh -c examples/sample.yaml
 ```
 
 # License
