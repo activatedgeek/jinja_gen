@@ -1,5 +1,9 @@
 # Jinja Generator
 
+[![Build Status](https://travis-ci.com/activatedgeek/jinja_gen.svg?branch=master)](https://travis-ci.com/activatedgeek/jinja_gen)
+[![PyPI version](https://badge.fury.io/py/jinja_gen.svg)](https://pypi.org/project/jinja_gen/)
+![Project Status](https://img.shields.io/badge/status-stable-brightgreen.svg)
+
 ## Installation
 
 ### From PyPI Repository
