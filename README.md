@@ -1,7 +1,7 @@
 # Jinja Generator
 
-[![Build Status](https://travis-ci.com/activatedgeek/jinja_gen.svg?branch=master)](https://travis-ci.com/activatedgeek/jinja_gen)
-[![PyPI version](https://badge.fury.io/py/jinja_gen.svg)](https://pypi.org/project/jinja_gen/)
+[![Build Status](https://travis-ci.com/activatedgeek/jinja-gen.svg?branch=master)](https://travis-ci.com/activatedgeek/jinja-gen)
+[![PyPI version](https://badge.fury.io/py/jinja-gen.svg)](https://pypi.org/project/jinja-gen/)
 ![Project Status](https://img.shields.io/badge/status-stable-brightgreen.svg)
 
 ## Installation
@@ -9,7 +9,7 @@
 ### From PyPI Repository
 
 ```shell
-$ pip install jinja_gen
+$ pip install jinja-gen
 ```
 
 ### From Source
@@ -21,7 +21,7 @@ $ pip install -U .
 ## Usage
 
 ```
-usage: jinja_gen [-h] -f  [-o] [--dry] [-k] [-d]
+usage: jinja-gen [-h] -f  [-o] [--dry] [-k] [-d]
 
 Jinja Generator
 

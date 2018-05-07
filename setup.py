@@ -23,7 +23,7 @@ with open('VERSION') as f:
 with open('README.md') as f:
     README = f.read()
 
-setup(name='jinja_gen',
+setup(name='jinja-gen',
       version=VERSION,
       description='Generate script files from easy configs',
       long_description=README,
@@ -45,7 +45,7 @@ setup(name='jinja_gen',
       install_requires=install_requires,
       entry_points={
           'console_scripts': [
-              'jinja_gen=jinja_gen.cli:main',
+              'jinja-gen=jinja_gen.cli:main',
           ],
       },
       zip_safe=False)
