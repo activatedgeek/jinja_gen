@@ -47,5 +47,4 @@ setup(name='jinja-gen',
           'console_scripts': [
               'jinja-gen=jinja_gen.cli:main',
           ],
-      },
-      zip_safe=False)
+      })

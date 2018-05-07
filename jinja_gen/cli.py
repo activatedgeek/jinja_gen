@@ -6,13 +6,13 @@ from jinja2 import Template
 from jinja_gen.arguments import get_args
 
 
-def generate_matrix(matrix, output_dir, prefix='', ext='', defaults={},
+def generate_matrix(matrix, output_dir, template_fname, defaults=None,
                     name_keys=None, output_name_key=None, output_dir_key=None):
     name_keys = name_keys or matrix.keys()
     for config in itertools.product(*matrix.values()):
-        template_vars = {**defaults, **dict(zip(matrix.keys(), config))}
-        name = prefix + '-'.join(map(lambda x: str(template_vars[x]), name_keys))
-        output_f = os.path.join(output_dir, name, 'run' + ext)
+        template_vars = {**(defaults or {}), **dict(zip(matrix.keys(), config))}
+        name = '-'.join(map(lambda x: str(template_vars[x]), name_keys))
+        output_f = os.path.join(output_dir, name, template_fname)
 
         if output_name_key:
             template_vars[output_name_key] = name
@@ -25,29 +25,25 @@ def generate_matrix(matrix, output_dir, prefix='', ext='', defaults={},
 def main():
     args = get_args()
 
-    with open(args.file, 'r') as stream:
+    with open(args.config, 'r') as stream:
         data = yaml.load(stream)
 
         # Required Keys
-        for key in ['template', 'matrix']:
-            assert key in data, '"{}" key missing in "{}"'.format(key, args.file)
-
-        # If template path is not absolute, consider relative to config file
-        if not os.path.isabs(data['template']):
-            data['template'] = os.path.join(os.path.dirname(args.file), data['template'])
+        assert 'matrix' in data, '"matrix" key missing in "{}"'.format(args.config)
 
         # Optional Keys
         data['name_keys'] = data.get('name_keys', None)
-        data['ext'] = data.get('ext', '')
-        data['prefix'] = data.get('prefix', '')
         data['defaults'] = data.get('defaults', {})
 
-        with open(data['template'], 'r') as template_f:
+        # Parse extension from the template file
+        template_fname = os.path.basename(args.file)
+
+        with open(args.file, 'r') as template_f:
             template = Template(template_f.read())
 
         for matrix in data['matrix']:
             for out_f, template_vars in generate_matrix(matrix, args.output_dir,
-                                                        prefix=data['prefix'], ext=data['ext'],
+                                                        template_fname=template_fname,
                                                         defaults=data['defaults'], name_keys=data['name_keys'],
                                                         output_name_key=args.output_name_key,
                                                         output_dir_key=args.output_dir_key):

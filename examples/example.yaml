@@ -1,6 +1,3 @@
-template: sample.sh.j2
-prefix: sample
-ext: .sh
 name_keys: ['foo', 'bar']
 
 defaults:

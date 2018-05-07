@@ -45,6 +45,10 @@ optional arguments:
 
 See sample files in [examples](./examples) folder.
 
+```
+$ jinja-gen -f ./examples/example.sh.j2 -c ./examples/example.yaml
+```
+
 # License
 
 MIT
