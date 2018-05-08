@@ -5,10 +5,12 @@ from datetime import datetime
 
 from jinja_gen.arguments import get_args
 from jinja_gen.utils import resolve_random_matrix, generate_matrix
-import tensorboardX
+
 
 def main():
     args = get_args()
+
+    matrix_modified = False
 
     with open(args.config, 'r') as stream:
         data = yaml.load(stream)
@@ -27,7 +29,9 @@ def main():
             template = Template(template_f.read())
 
         for i in range(len(data['matrix'])):
-            data['matrix'][i] = resolve_random_matrix(data['matrix'][i])
+            data['matrix'][i], mod = resolve_random_matrix(data['matrix'][i])
+            matrix_modified = matrix_modified or mod
+
             for out_f, template_vars in generate_matrix(data['matrix'][i], args.output_dir,
                                                         template_fname=template_fname,
                                                         defaults=data['defaults'], name_keys=data['name_keys'],
@@ -43,8 +47,8 @@ def main():
                 if args.debug:
                     print('Generated {}'.format(out_f))
 
-    # Dump an extra file with the deterministic values
-    if args.no_dump:
+    # Dump an extra file with the deterministic values (if it had distributional values)
+    if args.no_dump and matrix_modified:
         f_name, ext = os.path.splitext(os.path.basename(args.config))
         deterministic_dump_file = os.path.join(os.path.dirname(args.config),
                                                f_name + '-' + str(datetime.now().strftime('%b-%d-%H-%M-%S')) + ext)

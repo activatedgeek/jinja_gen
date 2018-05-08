@@ -21,10 +21,12 @@ def generate_matrix(matrix, output_dir, template_fname, defaults=None,
 
 
 def resolve_random_matrix(matrix):
+    mod = False
     for key in matrix.keys():
         if not isinstance(matrix[key], list):
             matrix[key] = resolve_randomized_parameter(**matrix[key])
-    return matrix
+            mod = True
+    return matrix, mod
 
 
 def resolve_randomized_parameter(dist, n_samples, **kwargs):
