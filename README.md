@@ -21,7 +21,7 @@ $ pip install -U .
 ## Usage
 
 ```
-usage: jinja-gen [-h] -f  -c  [-o] [--dry] [-k] [-d]
+usage: jinja-gen [-h] -f  -c  [-o] [--dry] [-k] [-d] [--debug] [--no-dump]
 
 Jinja Generator
 
@@ -39,6 +39,9 @@ optional arguments:
   -d , --output-dir-key 
                         An extra key identifier populated for template with
                         output directory (default: dir)
+  --debug               Print values for debugging (default: False)
+  --no-dump             Flag to disable a dump of deterministic version of the
+                        configuration file (default: True)
 ```
 
 ## Examples

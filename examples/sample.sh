@@ -8,4 +8,4 @@
 #SBATCH --mem=64000
 #SBATCH --time=24:00:00
 
-python my_script.py --foo {{ foo }} --bar {{ bar }}
+python my_script.py --foo {{ foo }} --bar {{ bar }} --seed {{ seed }}
