@@ -22,6 +22,10 @@ def get_args():
     parser.add_argument('-d', '--output-dir-key', type=str, default='dir',
                         metavar='',
                         help='An extra key identifier populated for template with output directory')
+    parser.add_argument('--debug', action='store_true', default=False,
+                        help='Print values for debugging')
+    parser.add_argument('--no-dump', action='store_false', default=True,
+                        help='Flag to disable a dump of deterministic version of the configuration file')
     args = parser.parse_args()
 
     # Make file paths absolute
