@@ -23,9 +23,11 @@ def generate_matrix(matrix, output_dir, template_fname, defaults=None,
 def resolve_random_matrix(matrix):
     mod = False
     for key in matrix.keys():
-        if not isinstance(matrix[key], list):
+        if isinstance(matrix[key], dict):
             matrix[key] = resolve_randomized_parameter(**matrix[key])
             mod = True
+        elif not isinstance(matrix[key], list):
+            matrix[key] = [matrix[key]]
     return matrix, mod
 
 

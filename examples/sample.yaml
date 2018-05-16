@@ -5,6 +5,7 @@ defaults:
 
 matrix:
   - foo: ['barA', 'barB']
+    single_val: 42
     uniform:
       n_samples: 2
       dist: uniform
