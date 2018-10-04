@@ -7,11 +7,9 @@ def get_args():
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('-f', '--file', type=str,
-                        metavar='', help='Path to the Jinja2 template file',
-                        required=True)
+                        metavar='', help='Path to the Jinja2 template file')
     parser.add_argument('-c', '--config', type=str,
-                        metavar='', help='Path to the YAML configuration file',
-                        required=True)
+                        metavar='', help='Path to the YAML configuration file')
     parser.add_argument('-o', '--output-dir', type=str,
                         metavar='',
                         help='Output directory for generated files, defaults to configuration file name')
@@ -24,6 +22,8 @@ def get_args():
                         help='An extra key identifier populated for template with output directory')
     parser.add_argument('--debug', action='store_true', default=False,
                         help='Enable debugging')
+    parser.add_argument('--exec', action='store_true', default=False,
+                        help='Enable executable file outputs')
     parser.add_argument('--no-dump', action='store_false', default=True,
                         help='Flag to disable a deterministic dump of the configuration file')
     args = parser.parse_args()
