@@ -21,7 +21,8 @@ $ pip install -U .
 ## Usage
 
 ```
-usage: jinja-gen [-h] -f  -c  [-o] [--dry] [-k] [-d] [--debug] [--no-dump]
+usage: jinja-gen [-h] [-f] [-c] [-o] [--dry] [-k] [-d] [--debug] [--exec]
+                 [--no-dump]
 
 Jinja Generator
 
@@ -40,6 +41,7 @@ optional arguments:
                         An extra key identifier populated for template with
                         output directory (default: dir)
   --debug               Enable debugging (default: False)
+  --exec                Enable executable file outputs (default: False)
   --no-dump             Flag to disable a deterministic dump of the
                         configuration file (default: True)
 ```
@@ -50,6 +52,12 @@ See sample files in [examples](./examples) folder.
 
 ```
 $ jinja-gen -f examples/sample.sh -c examples/sample.yaml
+```
+
+To enable executable file outputs,
+
+```
+$ jinja-gen -f examples/sample.sh -c examples/sample.yaml --exec
 ```
 
 # License
