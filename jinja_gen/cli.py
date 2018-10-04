@@ -1,4 +1,5 @@
 import os
+import stat
 import yaml
 from jinja2 import Template
 from datetime import datetime
@@ -44,6 +45,10 @@ def main():
                     with open(out_f, 'w') as f:
                         f.write(rendered_string)
 
+                    if args.exec:
+                        st = os.stat(out_f)
+                        os.chmod(out_f, st.st_mode | stat.S_IEXEC)
+
                 if args.debug:
                     print('Generated {}'.format(out_f))
 
@@ -51,6 +56,6 @@ def main():
     if args.no_dump and matrix_modified:
         f_name, ext = os.path.splitext(os.path.basename(args.config))
         deterministic_dump_file = os.path.join(os.path.dirname(args.config),
-                                               f_name + '-' + str(datetime.now().strftime('%b-%d-%H-%M-%S')) + ext)
+                                               f_name + '-' + str(datetime.now().strftime('%m-%d-%Y-%H-%M-%S')) + ext)
         with open(deterministic_dump_file, 'w') as f:
             yaml.dump(data, f, default_flow_style=False)
