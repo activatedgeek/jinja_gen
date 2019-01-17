@@ -3,13 +3,12 @@ import os
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='Jinja Generator',
-                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser = argparse.ArgumentParser(description='Jinja Generator')
 
     parser.add_argument('-f', '--file', type=str,
                         metavar='', help='Path to the Jinja2 template file')
     parser.add_argument('-c', '--config', type=str,
-                        metavar='', help='Path to the YAML configuration file')
+                        metavar='', help='Path to the YAML configuration file, defaults to <file_basename>.yaml')
     parser.add_argument('-o', '--output-dir', type=str,
                         metavar='',
                         help='Output directory for generated files, defaults to configuration file name')
@@ -29,13 +28,17 @@ def get_args():
     args = parser.parse_args()
 
     # Make file paths absolute
+    args.file = os.path.abspath(args.file)
+
+    if not args.config:
+      args.config = '{}.yaml'.format(os.path.splitext(args.file)[0])
     args.config = os.path.abspath(args.config)
 
     # If output dir not given, store in the same folder as the YAML file
     if not args.output_dir:
         args.output_dir = os.path.join(
-            os.path.dirname(args.config),
-            os.path.splitext(os.path.basename(args.config))[0]
+            os.path.dirname(args.file),
+            os.path.splitext(os.path.basename(args.file))[0]
         )
 
     # If path is relative, then output relative to the config file with the same folder name

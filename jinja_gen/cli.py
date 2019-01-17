@@ -14,7 +14,7 @@ def main():
     matrix_modified = False
 
     with open(args.config, 'r') as stream:
-        data = yaml.load(stream)
+        data = yaml.safe_load(stream)
 
         # Required Keys
         assert 'matrix' in data, '"matrix" key missing in "{}"'.format(args.config)
@@ -58,4 +58,8 @@ def main():
         deterministic_dump_file = os.path.join(os.path.dirname(args.config),
                                                f_name + '-' + str(datetime.now().strftime('%m-%d-%Y-%H-%M-%S')) + ext)
         with open(deterministic_dump_file, 'w') as f:
-            yaml.dump(data, f, default_flow_style=False)
+            yaml.safe_dump(data, f, default_flow_style=False)
+
+
+if __name__ == '__main__':
+  main()
