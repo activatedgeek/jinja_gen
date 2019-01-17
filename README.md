@@ -22,28 +22,28 @@ $ pip install -U .
 
 ```
 usage: jinja-gen [-h] [-f] [-c] [-o] [--dry] [-k] [-d] [--debug] [--exec]
-                 [--no-dump]
+              [--no-dump]
 
 Jinja Generator
 
 optional arguments:
   -h, --help            show this help message and exit
-  -f , --file           Path to the Jinja2 template file (default: None)
-  -c , --config         Path to the YAML configuration file (default: None)
+  -f , --file           Path to the Jinja2 template file
+  -c , --config         Path to the YAML configuration file, defaults to
+                        <file_basename>.yaml
   -o , --output-dir     Output directory for generated files, defaults to
-                        configuration file name (default: None)
-  --dry                 A dry run showing files to be generated (default:
-                        False)
+                        configuration file name
+  --dry                 A dry run showing files to be generated
   -k , --output-name-key 
                         An extra key identifier populated for template with
-                        name (default: name)
+                        name
   -d , --output-dir-key 
                         An extra key identifier populated for template with
-                        output directory (default: dir)
-  --debug               Enable debugging (default: False)
-  --exec                Enable executable file outputs (default: False)
+                        output directory
+  --debug               Enable debugging
+  --exec                Enable executable file outputs
   --no-dump             Flag to disable a deterministic dump of the
-                        configuration file (default: True)
+                        configuration file
 ```
 
 ## Examples
