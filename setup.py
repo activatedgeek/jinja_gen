@@ -1,3 +1,4 @@
+import os
 import sys
 from setuptools import setup, find_packages
 
@@ -17,8 +18,10 @@ if CURRENT_PYTHON < MIN_PYTHON:
 with open('requirements.txt', 'r') as f:
     install_requires = f.readlines()
 
-with open('VERSION') as f:
-    VERSION = f.read().strip()
+VERSION = '0.0.dev0'
+if os.path.isfile('VERSION'):
+  with open('VERSION') as f:
+      VERSION = f.read().strip()
 
 with open('README.md') as f:
     README = f.read()
