@@ -5,8 +5,7 @@ cache:
 
 stages:
   - name: test
-    if: FALSE
-    # if: (branch = master) OR (type = pull_request AND head_branch = master)
+    if: (branch = master) OR (type = pull_request AND head_branch = master)
   - name: deploy
     if: (tag IS present) OR (branch = master) OR (type = pull_request AND head_branch = master)
 
