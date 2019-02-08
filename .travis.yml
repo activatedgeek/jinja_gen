@@ -1,7 +1,4 @@
 language: python
-python:
-  - "3.6"
-  - "3.7"
 
 cache:
   pip: true
@@ -17,10 +14,15 @@ jobs:
   include:
 
     - stage: test
+      python:
+        - "3.6"
+        - "3.7"
       script:
         - true
 
     - stage: deploy
+      python:
+        - "3.6"
       script:
         - pip install .
       before_deploy:
