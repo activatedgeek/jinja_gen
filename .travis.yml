@@ -1,17 +1,38 @@
 language: python
-python:
-  - "3.6"
 
-script:
-  - pip install -U .
+cache:
+  pip: true
 
-before_deploy:
-  - echo "$TRAVIS_TAG" > VERSION
+stages:
+  - name: test
+    if: (branch = master) OR (type = pull_request AND head_branch = master)
+  - name: deploy
+    if: (tag IS present) OR (branch = master) OR (type = pull_request AND head_branch = master)
 
-deploy:
-  provider: pypi
-  user: $PYPI_USERNAME
-  password: $PYPI_PASSWORD
-  skip_cleanup: true
-  on:
-    tags: true
+jobs:
+  include:
+
+    - stage: test
+      python:
+        - "3.6"
+        - "3.7"
+      script:
+        - pip install .
+        - jinja-gen -h
+        - jinja-gen -f examples/sample.sh
+        - ls examples/sample
+
+    - stage: deploy
+      python:
+        - "3.6"
+      script:
+        - pip install .
+      before_deploy:
+        - echo "$TRAVIS_TAG" > VERSION
+      deploy:
+        provider: pypi
+        user: $PYPI_USERNAME
+        password: $PYPI_PASSWORD
+        skip_cleanup: true
+        on:
+          tags: true
