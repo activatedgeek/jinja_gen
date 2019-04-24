@@ -2,7 +2,9 @@
 
 [![Build Status](https://travis-ci.com/activatedgeek/jinja-gen.svg?branch=master)](https://travis-ci.com/activatedgeek/jinja-gen)
 [![PyPI version](https://badge.fury.io/py/jinja-gen.svg)](https://pypi.org/project/jinja-gen/)
-![Project Status](https://img.shields.io/badge/status-stable-brightgreen.svg)
+![Project Status](https://img.shields.io/badge/status-archived-orange.svg)
+
+**I've archived this project in favor of more idiomatic construction with [kondo](https://github.com/activatedgeek/kondo).**
 
 ## Installation
 
